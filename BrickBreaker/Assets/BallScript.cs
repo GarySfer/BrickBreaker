@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
     public Transform paddle;
     public float speed;
     public Transform explosion;
+    public GameManager gm;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class BallScript : MonoBehaviour
             Debug.Log("Bajo jajo");
             rb.velocity = Vector2.zero;
             inPlay = false;
+            gm.UpdateLives(-1);
         }
     }
 
@@ -39,6 +41,9 @@ public class BallScript : MonoBehaviour
         if(other.transform.CompareTag("brick")) {
             Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
             Destroy(newExplosion.gameObject, 0.5F);
+
+            gm.UpdateScore(other.gameObject.GetComponent<BrickScript>().points);
+
             Destroy(other.gameObject);
         }
     }
