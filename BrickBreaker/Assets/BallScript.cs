@@ -18,6 +18,10 @@ public class BallScript : MonoBehaviour
 
     void Update()
     {
+
+        if (gm.gameover) {
+            return;
+        }
         if(!inPlay) {
             transform.position = paddle.position;
         }

@@ -8,7 +8,7 @@ public class PaddleScript : MonoBehaviour {
     public float speed;
     public float leftScreenEdge;
     public float rightScreenEdge;
-
+    public GameManager gm;
     
     void Start() {
         leftScreenEdge = -7.6F;
@@ -16,6 +16,10 @@ public class PaddleScript : MonoBehaviour {
     }
 
     void Update() {
+        if (gm.gameover) {
+            return;
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
 
         transform.Translate(Vector2.down * horizontal * Time.deltaTime * speed);
