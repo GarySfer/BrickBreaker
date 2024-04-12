@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dda9c7b2686a97438ed4b9e3f569dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 0
+  lives: 20
   score: 0
   livesText: {fileID: 980724924}
   scoreText: {fileID: 1316616214}

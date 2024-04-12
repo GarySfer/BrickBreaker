@@ -13,13 +13,14 @@ public class GameManager : MonoBehaviour {
     public TextMeshProUGUI scoreText;
     public bool gameover = false;
     public GameObject gameOverPanel;
+    int bricksAmount;
 
     // Start is called before the first frame update
     void Start() {
-        lives = 3;
         score = 0;
         livesText.text = "Lives: " + lives;
         scoreText.text = "Scrore: " + score;
+        bricksAmount = GameObject.FindGameObjectsWithTag("brick").Length;
     }
 
     // Update is called once per frame
@@ -42,6 +43,13 @@ public class GameManager : MonoBehaviour {
     public void UpdateScore(int scoreChange) {
         score += scoreChange;
         scoreText.text = "Score: " + score;
+    }
+
+    public void UpdateBrickAmount() {
+        bricksAmount--;
+        if(bricksAmount <=0) {
+            GameOver();
+        }
     }
 
     void GameOver() {
