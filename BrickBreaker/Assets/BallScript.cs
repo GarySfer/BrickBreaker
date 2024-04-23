@@ -44,20 +44,28 @@ public class BallScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("brick")) {
+            BrickScript brickScript = other.gameObject.GetComponent<BrickScript>();
+            if(brickScript.hitsToBreak > 1) {
+                brickScript.BreakBrick();
+            } else {
 
-            int randomChance = Random.Range(1,101);
-
-            if(randomChance < 50) {
-                Instantiate(extraLifePowerup,other.transform.position, other.transform.rotation);
-            }
-
-            Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
-            Destroy(newExplosion.gameObject, 0.5F);
-
-            gm.UpdateScore(other.gameObject.GetComponent<BrickScript>().points);
-            gm.UpdateBrickAmount();
             
-            Destroy(other.gameObject);
+
+
+                int randomChance = Random.Range(1,101);
+
+                if(randomChance < 10) {
+                    Instantiate(extraLifePowerup,other.transform.position, other.transform.rotation);
+                }
+
+                Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
+                Destroy(newExplosion.gameObject, 0.5F);
+
+                gm.UpdateScore(brickScript.points);
+                gm.UpdateBrickAmount();
+            
+                Destroy(other.gameObject);
+            }
         }
     }
 }

@@ -143,4 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487f46cc09a35d1439f915660f1390f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 2
+  points: 3
+  hitsToBreak: 2
+  hitSprite: {fileID: 21300000, guid: fb66f296a5fd02f4f9f0014dbed10136, type: 3}
