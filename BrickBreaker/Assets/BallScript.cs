@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour
     public float speed;
     public Transform explosion;
     public GameManager gm;
+    public Transform extraLifePowerup;
 
     void Start()
     {
@@ -43,6 +44,13 @@ public class BallScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("brick")) {
+
+            int randomChance = Random.Range(1,101);
+
+            if(randomChance < 50) {
+                Instantiate(extraLifePowerup,other.transform.position, other.transform.rotation);
+            }
+
             Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
             Destroy(newExplosion.gameObject, 0.5F);
 

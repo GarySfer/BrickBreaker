@@ -265,6 +265,7 @@ MonoBehaviour:
   speed: 300
   explosion: {fileID: 5385797267459643661, guid: c9ef3cc29496f9c428acd5461f236eed, type: 3}
   gm: {fileID: 1858733176}
+  powerup: {fileID: 6379685905077974333, guid: e8275923d49e44e4693de40448acf65b, type: 3}
 --- !u!58 &23161293
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -659,6 +660,7 @@ GameObject:
   - component: {fileID: 249441120}
   - component: {fileID: 249441122}
   - component: {fileID: 249441123}
+  - component: {fileID: 249441124}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Untagged
@@ -797,6 +799,33 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!50 &249441124
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249441118}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1001 &262209090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3854,7 +3883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dda9c7b2686a97438ed4b9e3f569dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 20
+  lives: 3
   score: 0
   livesText: {fileID: 980724924}
   scoreText: {fileID: 1316616214}
