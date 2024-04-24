@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour {
 
     public int lives;
@@ -13,7 +14,11 @@ public class GameManager : MonoBehaviour {
     public TextMeshProUGUI scoreText;
     public bool gameover = false;
     public GameObject gameOverPanel;
+    public GameObject loadingLevelPanel;
     int bricksAmount;
+    public Transform[] levels;
+    private int currentLevelIndex = 0;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -48,8 +53,25 @@ public class GameManager : MonoBehaviour {
     public void UpdateBrickAmount() {
         bricksAmount--;
         if(bricksAmount <=0) {
-            GameOver();
+            
+            if(currentLevelIndex >= levels.Length -1) {
+                GameOver();
+            } else {
+                loadingLevelPanel.SetActive(true);
+                loadingLevelPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Level " + (currentLevelIndex +2);
+                gameover = true;
+                Invoke("LoadLevel", 2f);
+            }
         }
+    }
+
+
+    void LoadLevel() {
+        currentLevelIndex++;
+        Instantiate(levels[currentLevelIndex], Vector2.zero, Quaternion.identity);
+        bricksAmount = GameObject.FindGameObjectsWithTag("brick").Length;
+        gameover = false;
+        loadingLevelPanel.SetActive(false);
     }
 
     void GameOver() {
