@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public double score;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+    public TMP_InputField highScoreInput;
     public bool gameover = false;
     public GameObject gameOverPanel;
     public GameObject loadingLevelPanel;
@@ -77,6 +79,23 @@ public class GameManager : MonoBehaviour {
     void GameOver() {
         gameover = true;
         gameOverPanel.SetActive(true);
+        int highscore = PlayerPrefs.GetInt("HIGHSCORE");
+        if(score > highscore) {
+            PlayerPrefs.SetInt("HIGHSCORE", (int)score);
+
+            highScoreText.text = "New Highscore!:" + "\n" + "Enter your name below.";
+            highScoreInput.gameObject.SetActive(true);
+
+        } else {
+            highScoreText.text = PlayerPrefs.GetString("HIGHSCORENAME") + " Highscore: " + highscore + "\n" + "Your score is: " + score;
+        }
+    }
+
+    public void NewHighScore() {
+        string highScoreName = highScoreInput.text;
+        PlayerPrefs.SetString("HIGHSCORENAME", highScoreName);
+        highScoreInput.gameObject.SetActive(false);
+        highScoreText.text = "Highscore: " + highScoreName + "\n" + "Your highscore is: " + score;
     }
 
     public void PlayAgain() {
